@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
+require "pry"
+require "saharspec"
+
 require "vending"
+
+Dir[Pathname.new(File.expand_path(__dir__)).join("support", "**", "*.rb")].each do |path|
+  require path
+end
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

@@ -1,8 +1,12 @@
 # Vending
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/vending`. To experiment with that code, run `bin/console` for an interactive prompt.
+* [x] Once a product is selected and the appropriate amount of money (coins) is inserted return that product
+* [x] Ask for more money (coins) if there is not enough
+* [x] Manage the scenario where the item is out of stock
+* [x] It should also return change (coins) if too much money is provided
+* [x] Manage the scenario when machine does not have enough change
+* [x] Change should be printed as coin * count and as minimum coins as possible
+* [ ] CLI
 
 ## Installation
 

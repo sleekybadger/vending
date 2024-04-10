@@ -7,6 +7,11 @@ gemspec
 
 gem "rake", "~> 13.0"
 
-gem "rspec", "~> 3.0"
+# Debugging
+gem "pry", "~> 0.14"
 
+# Testing tools
+gem "fuubar", "~> 2.5"
+gem "rspec", "~> 3.0"
 gem "rubocop", "~> 1.21"
+gem "saharspec", "~> 0.0"

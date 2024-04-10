@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+RSpec.describe Vending::Coin do
+  subject(:coin) { described_class.new(label:) }
+
+  describe "#value" do
+    subject(:result) { coin.value }
+
+    context "when label contains float value" do
+      let(:label) { "0.25" }
+
+      it { is_expected.to eq(25) }
+    end
+
+    context "when label contains integer value" do
+      let(:label) { "3" }
+
+      it { is_expected.to eq(300) }
+    end
+  end
+end

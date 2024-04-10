@@ -4,8 +4,15 @@
 require "bundler/setup"
 require "vending"
 
-# You can add fixtures and/or initialization code here to make experimenting
-# with your gem easier. You can also use a different console, if you like.
+def reload!
+  root_dir = File.expand_path("..", __dir__)
+
+  %w[lib].each do |dir|
+    Dir.glob("#{root_dir}/#{dir}/**/*.rb").each { |f| load(f) }
+  end
+
+  true
+end
 
 require "irb"
 IRB.start(__FILE__)
