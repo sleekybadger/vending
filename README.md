@@ -1,5 +1,31 @@
 # Vending
 
+<img src="demo.gif" width="960" height="540" />
+
+## Installation
+
+* Clone this repo
+* Build docker image `docker build -t vending .`
+
+## Usage
+
+* Run CLI `docker run --rm -it vending` or run CLI in debug mode `docker run --rm -it vending bin/cli debug`
+* Run inside console `docker run --rm -it vending bin/console`:
+  ```
+    machine = Vending::Machine.new
+
+    products = machine.products
+    product_id = products.first.id
+
+    machine.add_coin!(label: '5')
+    machine.add_coin!(label: '5')
+
+    machine.purchase!(id: product_id)
+
+  ```
+
+## TODO
+
 * [x] Once a product is selected and the appropriate amount of money (coins) is inserted return that product
 * [x] Ask for more money (coins) if there is not enough
 * [x] Manage the scenario where the item is out of stock
@@ -7,33 +33,3 @@
 * [x] Manage the scenario when machine does not have enough change
 * [x] Change should be printed as coin * count and as minimum coins as possible
 * [x] CLI
-
-## Installation
-
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-
-If bundler is not being used to manage dependencies, install the gem by executing:
-
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/vending.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
