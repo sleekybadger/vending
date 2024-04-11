@@ -3,9 +3,6 @@ AllCops:
   SuggestExtensions: false
   NewCops: enable
 
-  Exclude:
-    - 'vending.gemspec'
-
 Layout/LineLength:
   Max: 120
 
@@ -35,6 +32,10 @@ Style/MultilineBlockChain:
 Style/Documentation:
   Enabled: false
 
+Gemspec/RequireMFA:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*.rb'
+
