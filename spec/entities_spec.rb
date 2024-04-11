@@ -19,3 +19,11 @@ RSpec.describe Vending::Coin do
     end
   end
 end
+
+RSpec.describe Vending::Product do
+  describe "#human_price" do
+    subject(:result) { build(:product, price: 575).human_price }
+
+    it { is_expected.to eq("5.75") }
+  end
+end

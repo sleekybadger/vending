@@ -14,6 +14,14 @@ RSpec.describe Vending::Inventory do
     it { expect(result.send(:quantities)).not_to be_empty }
   end
 
+  describe "#list" do
+    subject(:result) { described_class.new(products:, quantities:).list }
+
+    let(:products) { { id => product } }
+
+    it { is_expected.to eq([product]) }
+  end
+
   describe "#find!" do
     subject(:result) { described_class.new(products:, quantities:).find!(id:) }
 

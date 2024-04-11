@@ -8,11 +8,15 @@ module Vending
       @user_balance = user_balance
     end
 
-    def add_coin(label:)
+    def products
+      inventory.list
+    end
+
+    def add_coin!(label:)
       user_balance.add_coins!(label:)
     end
 
-    def purchase(id:)
+    def purchase!(id:)
       product = inventory.find!(id:)
 
       raise ProductIsOutOfStock unless inventory.in_stock?(product:)
@@ -44,7 +48,7 @@ module Vending
         break remaining if remaining.zero?
 
         required_coins_count = remaining / coin.value
-        used_coins_count = required_coins_count > available_coins_count ? available_coins_count : required_coins_count
+        used_coins_count = [required_coins_count, available_coins_count].min
         next remaining if used_coins_count.zero?
 
         change.add_coins!(label: coin.label, count: used_coins_count)

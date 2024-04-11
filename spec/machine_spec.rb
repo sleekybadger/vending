@@ -1,8 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.describe Vending::Machine do
-  describe "#add_coin" do
-    subject(:result) { described_class.new.add_coin(label:) }
+  describe "#products" do
+    subject(:result) { described_class.new(inventory:).products }
+
+    let(:product_id) { 1 }
+    let(:product) { build(:product, id: product_id, label: "Cola", price: 125) }
+    let(:products) { { product_id => product } }
+
+    let(:inventory) { Vending::Inventory.new(products:) }
+
+    it { expect(result).to eq([product]) }
+  end
+
+  describe "#add_coin!" do
+    subject(:result) { described_class.new.add_coin!(label:) }
 
     let(:label) { "0.5" }
     let(:coin) { build(:coin, label:) }
@@ -10,8 +22,8 @@ RSpec.describe Vending::Machine do
     it { expect(result.coins).to eq({ coin => 1 }) }
   end
 
-  describe "#purchase" do
-    subject(:result) { described_class.new(inventory:, machine_balance:, user_balance:).purchase(id: product_id) }
+  describe "#purchase!" do
+    subject(:result) { described_class.new(inventory:, machine_balance:, user_balance:).purchase!(id: product_id) }
 
     let(:inventory) { Vending::Inventory.new(products:, quantities:) }
     let(:machine_balance) { Vending::Balance.new(coins: machine_coins) }

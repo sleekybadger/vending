@@ -13,7 +13,7 @@ module Vending
       def init_filled
         data = PRODUCTS_DATA.each_with_object({ products: {}, quantities: {} }).with_index(1) do |(product, accum), id|
           accum[:products][id] = Product.new(id:, **product)
-          accum[:quantities][id] = id + PRODUCTS_DATA.count
+          accum[:quantities][id] = (PRODUCTS_DATA.count / 2) + id
         end
 
         new(**data)
@@ -25,6 +25,10 @@ module Vending
     def initialize(products: {}, quantities: {})
       @products = products
       @quantities = quantities
+    end
+
+    def list
+      products.values
     end
 
     def find!(id:)

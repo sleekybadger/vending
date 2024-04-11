@@ -6,7 +6,7 @@
 * [x] It should also return change (coins) if too much money is provided
 * [x] Manage the scenario when machine does not have enough change
 * [x] Change should be printed as coin * count and as minimum coins as possible
-* [ ] CLI
+* [x] CLI
 
 ## Installation
 

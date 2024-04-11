@@ -6,9 +6,9 @@ module Vending
 
     class << self
       def init_filled
-        coins = SUPPORTED_COIN_LABELS.each_with_object({}).with_index do |(label, accum), index|
+        coins = SUPPORTED_COIN_LABELS.each_with_object({}) do |label, accum|
           coin = Coin.new(label:)
-          count = SUPPORTED_COIN_LABELS.size - index
+          count = SUPPORTED_COIN_LABELS.size / 2
 
           accum[coin] = count
         end
@@ -25,7 +25,7 @@ module Vending
 
     def value
       coins.inject(0) do |accum, (coin, quantity)|
-        coin.value * quantity + accum
+        (coin.value * quantity) + accum
       end
     end
 
@@ -64,6 +64,14 @@ module Vending
       @coins = {}
 
       self
+    end
+
+    def empty?
+      value.zero?
+    end
+
+    def to_s
+      coins.map { |(coin, count)| "#{coin.label} * #{count}" }.join(", ")
     end
   end
 end

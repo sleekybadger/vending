@@ -19,7 +19,7 @@ RSpec.describe Vending::Balance do
     subject(:result) { described_class.new(coins:).value }
 
     context "when balance has some coins" do
-      let(:coins) { { coin1 => 5, coin2 => 3, coin3 => 0 } }
+      let(:coins) { { coin1 => 5, coin2 => 3 } }
 
       it { is_expected.to eq(1100) }
     end
@@ -74,8 +74,30 @@ RSpec.describe Vending::Balance do
   describe "#clear!" do
     subject(:balance) { described_class.new(coins:).clear! }
 
-    let(:coins) { { coin1 => 5, coin2 => 3, coin3 => 0 } }
+    let(:coins) { { coin1 => 5, coin2 => 3 } }
 
     it { expect(balance.coins).to eq({}) }
+  end
+
+  describe "#empty?" do
+    subject(:result) { described_class.new(coins:).empty? }
+
+    context "when balance has some coins" do
+      let(:coins) { { coin1 => 5, coin2 => 3 } }
+
+      it { is_expected.to be_falsey }
+    end
+
+    context "when balance is empty" do
+      it { is_expected.to be_truthy }
+    end
+  end
+
+  describe "#to_s" do
+    subject(:result) { described_class.new(coins:).to_s }
+
+    let(:coins) { { coin1 => 5, coin2 => 3 } }
+
+    it { is_expected.to eq("1 * 5, 2 * 3") }
   end
 end
